@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<body>
+<h1>Server-Sent Events</h1>
+<ul id="list"></ul>
+</body>
+
+<script type="text/javascript">
+    const eventSrc = new EventSource("http://127.0.0.1:8080/events");
+
+    const list = document.getElementById("list");
+
+    eventSrc.onmessage = (event) => {
+        const li = document.createElement("li");
+        li.textContent = `message: ${event.data}`;
+
+        list.appendChild(li);
+    };
+</script>
+</html>
